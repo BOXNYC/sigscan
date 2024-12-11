@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Check if an install is needed
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+relative_dir="../node_modules"
+target_dir="$script_dir/$relative_dir"
+if [ ! -d "$target_dir" ]; then
+    npm install
+fi
+
+npm run dev
+
+open http://localhost:3000
