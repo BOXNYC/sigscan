@@ -3,14 +3,21 @@
 import { getFiles } from "@/app/actions/fs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import crop from "@/utils/crop";
 
 const dirPath = '/signatures';
 const checkDelay = 2000;
+const CROP_TOP = 0.2;
+const CROP_BOTTOM = 0.15;
+
 export default function ImageWatch() {
     const [newImagePath, setNewImagePath] = useState<string | undefined>(undefined);
     useEffect(() => {
         const readDir = async () => {
-            if ( !window ) return;
+            if ( !window ) {
+                setTimeout(readDir, checkDelay);
+                return;
+            }
             const files = (await getFiles(dirPath)).map((file: string) => `${dirPath}/${file}`);
             const prevFilesString = window.localStorage.getItem('signatureFiles');
             if ( !prevFilesString ) {
@@ -20,7 +27,9 @@ export default function ImageWatch() {
                 const newFiles = files.filter((file: string) => !prevFiles.includes(file));
                 if (prevFiles.length != files.length) localStorage.setItem('signatureFiles', JSON.stringify(files));
                 if ( newFiles.length > 0 ) {
-                    setNewImagePath(newFiles[0]);
+                    const [file] = newFiles;
+                    const croppedFile = await crop(file, CROP_TOP, CROP_BOTTOM);
+                    setNewImagePath(croppedFile);
                 }
             }
             setTimeout(readDir, checkDelay);
