@@ -6,12 +6,17 @@ export default async function Home() {
     <>
       <ImageWatch />
       <Image
-        src="/sharpie.png"
+        src="/copper.svg"
         alt=""
-        width={300} height={0}
-        className="absolute top-0 left-0 w-[300px] h-auto object-contain"
+        width={240} height={0}
+        className="absolute top-0 left-0 w-[240px] h-auto m-4 pointer-events-none"
       />
-      <h2 className="px-6 py-4 uppercase absolute top-0 right-0 text-3xl font-family-['Helvetica Neue']">Leave your mark</h2>
+      <Image
+        src="/mym_black.svg"
+        alt=""
+        width={500} height={0}
+        className="absolute top-0 right-0 w-[400px] h-auto m-4 -events-none"
+      />
     </>
   );
 }
