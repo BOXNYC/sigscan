@@ -8,14 +8,14 @@ export default async function Home() {
       <Image
         src="/copper.svg"
         alt=""
-        width={240} height={0}
-        className="absolute top-0 left-0 w-[240px] h-auto m-4 pointer-events-none"
+        width={375} height={0}
+        className="absolute top-[50px] left-[50px] w-[375px] h-auto m-4 pointer-events-none"
       />
       <Image
         src="/mym_black.svg"
         alt=""
-        width={500} height={0}
-        className="absolute top-0 right-0 w-[400px] h-auto m-4 -events-none"
+        width={532} height={0}
+        className="absolute top-[120px] right-[100px] w-[532px] h-auto m-4 -events-none"
       />
     </>
   );
